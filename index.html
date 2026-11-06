@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chronological Age Calculator – Exact Age, Live Counter &amp; Milestones</title>
+<meta name="description" content="Chronological age calculator with exact years, months and days, a live seconds counter, the weekday you were born, your next birthday, 10,000-day and billion-second milestones, and a reverse date-of-birth finder.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Chronological Age Calculator – How Old Are You, Exactly?">
+<meta property="og:description" content="Exact age in years, months, days, hours and seconds, plus your life milestones and a reverse age tool.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Chronological Age Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Calculates exact chronological age in years, months, days, hours and seconds, shows upcoming age milestones and finds a date of birth from a known age."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does the chronological age calculator count leap years?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works with real calendar dates, so every 29 February between the two dates is included in the day, week, hour and second totals, and month lengths of 28 to 31 days are used for the years-months-days result."}},
+{"@type":"Question","name":"How do I calculate my age in days?","acceptedAnswer":{"@type":"Answer","text":"Enter your date of birth and the date you want. The calculator counts every calendar day between them. As a rough check, multiply your age in years by 365.25."}},
+{"@type":"Question","name":"What day of the week was I born?","acceptedAnswer":{"@type":"Answer","text":"After you enter your date of birth, the result panel shows the weekday you were born on, for example 'born on a Tuesday'."}},
+{"@type":"Question","name":"How old will I be on a future date?","acceptedAnswer":{"@type":"Answer","text":"Change the 'Age on' date to any future date. The calculator shows your exact age on that day."}},
+{"@type":"Question","name":"How is age calculated for someone born on 29 February?","acceptedAnswer":{"@type":"Answer","text":"In leap years the birthday is 29 February. In other years this calculator treats 28 February as the birthday. Legal rules differ by country, and some use 1 March instead."}},
+{"@type":"Question","name":"What is a 10,000-day birthday?","acceptedAnswer":{"@type":"Answer","text":"It is the day you have been alive for exactly 10,000 days, at about 27 years and 4 months old. The milestones section shows the exact date for you."}},
+{"@type":"Question","name":"Is chronological age the same as my real age?","acceptedAnswer":{"@type":"Answer","text":"Yes. Chronological age is your real calendar age since birth. It is different from biological age, which estimates how old your body seems."}},
+{"@type":"Question","name":"Can I find a date of birth from an age?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the reverse tool: enter an age in years, months and days and the date it was measured on, and it shows the matching date of birth."}}]}
+</script>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a href="#" class="logo"><span class="logo-dot" aria-hidden="true"></span><span>chrono<b>.age</b></span></a>
+    <button class="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i><i></i></button>
+    <nav class="menu" aria-label="Main">
+      <a href="#calculator">Calculator</a>
+      <a href="#milestones">Milestones</a>
+      <a href="#guide">Guide</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="calculator">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="tag"><span></span>Live age clock</p>
+      <h1>Chronological Age Calculator</h1>
+      <p class="intro">How old are you, exactly? Enter a date of birth to get the exact chronological age in years, months and days. You also get a live counter down to the second, the weekday you were born, and every big milestone ahead. This page is a quick companion to the full <a href="https://chronologicagecalc.com/">Chronological Age Calculator</a>, which has more tools for school and clinical testing.</p>
+      <div class="ruler" aria-hidden="true">
+        <span style="--h:40%"></span><span style="--h:60%"></span><span style="--h:40%"></span><span style="--h:100%"></span><span style="--h:40%"></span><span style="--h:60%"></span><span style="--h:40%"></span><span style="--h:100%"></span><span style="--h:40%"></span><span style="--h:60%"></span><span style="--h:40%"></span><span style="--h:100%"></span><span style="--h:40%"></span><span style="--h:60%"></span><span style="--h:40%"></span><span style="--h:100%"></span><span style="--h:40%"></span><span style="--h:60%"></span><span style="--h:40%"></span><span style="--h:100%"></span>
+      </div>
+    </div>
+
+    <form class="card" id="form" onsubmit="return false" aria-label="Chronological age calculator">
+      <div class="card-top"><span>01</span> Your details</div>
+      <label class="fld">
+        <span>Date of birth</span>
+        <input type="date" id="dob" required>
+      </label>
+      <div class="two">
+        <label class="fld">
+          <span>Birth time <em>(optional)</em></span>
+          <input type="time" id="tob">
+        </label>
+        <label class="fld">
+          <span>Age on</span>
+          <input type="date" id="on" required>
+        </label>
+      </div>
+      <div class="chips">
+        <button type="button" data-on="today" class="on">Today</button>
+        <button type="button" data-on="eoy">31 Dec this year</button>
+        <button type="button" data-on="next">Next birthday</button>
+      </div>
+      <button type="button" class="go" id="go">Calculate age <span aria-hidden="true">→</span></button>
+      <p class="privacy">Runs in your browser. Nothing is saved.</p>
+    </form>
+  </div>
+</section>
+
+<section class="result" aria-live="polite">
+  <div class="wrap">
+    <p class="r-err" id="err" hidden></p>
+    <div id="out">
+      <div class="r-head">
+        <p class="r-label">Chronological age <span id="rOnLabel"></span></p>
+        <p class="r-born" id="born"></p>
+      </div>
+      <div class="ymd">
+        <div><b id="y">0</b><span id="yl">years</span></div>
+        <div><b id="m">0</b><span id="ml">months</span></div>
+        <div><b id="d">0</b><span id="dl">days</span></div>
+        <div class="ring-box">
+          <svg viewBox="0 0 120 120" class="ring" aria-hidden="true">
+            <circle cx="60" cy="60" r="50" class="ring-bg"/>
+            <circle cx="60" cy="60" r="50" class="ring-fg" id="ringFg"/>
+          </svg>
+          <div class="ring-txt"><b id="ringPct">0%</b><span>of the way to next birthday</span></div>
+        </div>
+      </div>
+      <p class="r-code">Written as <code id="code">0;0;0</code> · <span id="nextTxt"></span></p>
+
+      <div class="live">
+        <div><span>Months</span><b id="tMonths">0</b></div>
+        <div><span>Weeks</span><b id="tWeeks">0</b></div>
+        <div><span>Days</span><b id="tDays">0</b></div>
+        <div><span>Hours</span><b id="tHours">0</b></div>
+        <div><span>Minutes</span><b id="tMins">0</b></div>
+        <div class="sec"><span>Seconds <i id="liveDot" class="dot"></i></span><b id="tSecs">0</b></div>
+      </div>
+      <p class="live-note" id="liveNote"></p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="milestones">
+  <div class="wrap">
+    <div class="block-head">
+      <p class="tag dark"><span></span>Milestones</p>
+      <h2>Your life in round numbers</h2>
+      <p>Birthdays are not the only dates worth celebrating. Here are the days when your chronological age reaches a round number of days, weeks, months, hours or seconds. These are worked out from the date and time of birth above.</p>
+    </div>
+    <div class="ms-filter" role="tablist" aria-label="Filter milestones">
+      <button type="button" data-f="all" class="on">All</button>
+      <button type="button" data-f="next">Upcoming</button>
+      <button type="button" data-f="past">Reached</button>
+    </div>
+    <ol class="ms" id="ms"></ol>
+  </div>
+</section>
+
+<section class="block reverse-sec">
+  <div class="wrap rev-grid">
+    <div>
+      <p class="tag"><span></span>Reverse tool</p>
+      <h2>Find a date of birth from an age</h2>
+      <p>Know the chronological age on a report but not the birth date? Enter the age and the date it was measured. The tool works backwards and checks every candidate with the same calculation used above, so the date of birth it gives always produces that exact age.</p>
+      <p class="rev-tip">Also handy for age limits. The result shows the latest birth date for someone to be at least that age on the chosen day.</p>
+    </div>
+    <div class="rev-card">
+      <div class="rev-age">
+        <label><span>Years</span><input type="number" id="rY" min="0" max="130" value="15"></label>
+        <label><span>Months</span><input type="number" id="rM" min="0" max="11" value="2"></label>
+        <label><span>Days</span><input type="number" id="rD" min="0" max="31" value="22"></label>
+      </div>
+      <label class="fld"><span>Age measured on</span><input type="date" id="rOn"></label>
+      <button type="button" class="go" id="rGo">Find date of birth</button>
+      <div class="rev-out" id="rOut" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="block guide" id="guide">
+  <div class="wrap guide-grid">
+    <div class="g-side">
+      <p class="tag dark"><span></span>Guide</p>
+      <h2>Chronological age, explained properly</h2>
+      <p>Everything a good chronological age calculator does behind the scenes, and when the exact figure really matters.</p>
+    </div>
+    <div class="g-main">
+      <article class="chap">
+        <span class="num">01</span>
+        <h3>What a chronological age calculator does</h3>
+        <p>Your chronological age is the time between the moment you were born and a chosen moment, usually today. Saying "I'm 34" rounds that down to whole years. A chronological age calculator keeps the parts that rounding throws away: the extra months and days, and if you know your birth time, the hours and minutes too.</p>
+        <p>The answer is usually written as <b>years;months;days</b>, so 15;2;22 means 15 years, 2 months and 22 days. The same answer can also be shown as a single total, such as 5,562 days or 133,488 hours. Doctors, teachers, psychologists, lawyers and insurers all use exact ages, and so does anyone who just wants to know how many days they have been alive.</p>
+      </article>
+
+      <article class="chap">
+        <span class="num">02</span>
+        <h3>How the calculation works</h3>
+        <p>A reliable calculator does not divide the number of days by 365. That shortcut drifts with every leap year and ignores the fact that months have different lengths. Instead it counts in calendar steps:</p>
+        <ol>
+          <li>Count the <b>whole years</b> from the birthday up to the last birthday before the target date.</li>
+          <li>Count the <b>whole months</b> from that birthday up to the last "month-day" before the target date.</li>
+          <li>Count the <b>remaining days</b>.</li>
+        </ol>
+        <div class="worked">
+          <p class="w-title">Worked example</p>
+          <p>Born <b>14 August 2011</b>, age on <b>5 November 2026</b>:</p>
+          <ul>
+            <li>14 Aug 2011 → 14 Aug 2026 = <b>15 years</b></li>
+            <li>14 Aug 2026 → 14 Oct 2026 = <b>2 months</b></li>
+            <li>14 Oct 2026 → 5 Nov 2026 = 17 days left in October + 5 = <b>22 days</b></li>
+          </ul>
+          <p>Chronological age: <b>15;2;22</b>. Doing it on paper with "borrowing" gives the same result: 5 − 14 is negative, so borrow October's 31 days (5 + 31 − 14 = 22) and reduce the month from 11 to 10 (10 − 8 = 2).</p>
+        </div>
+      </article>
+
+      <article class="chap">
+        <span class="num">03</span>
+        <h3>Leap years and 29 February birthdays</h3>
+        <p>A year has 365 days, or 366 in a leap year. Leap years come every four years, except century years that cannot be divided by 400. So 2000 was a leap year but 1900 and 2100 are not. Over 400 years this averages <b>365.2425 days per year</b>, the figure this page uses for decimal ages.</p>
+        <p>People born on 29 February, sometimes called "leaplings", have a real birthday only once every four years. For the years in between, this calculator treats <b>28 February</b> as the birthday, so the age goes up before March begins. The law is not the same everywhere. Some countries treat 1 March as the legal birthday in a common year. If the exact day matters, for example for a licence or a contract, check the local rule.</p>
+      </article>
+
+      <article class="chap">
+        <span class="num">04</span>
+        <h3>Birth time and time zones</h3>
+        <p>For most purposes the date is enough. For newborns, though, age is often counted in <b>hours</b>. Feeding plans, jaundice checks and newborn screening tests are timed in hours of life. Add the birth time above and the hour, minute and second totals start from that exact minute instead of midnight.</p>
+        <p>Time zones can shift the date itself. A baby born at 11:30 pm in New York was born on the next calendar day in London. Chronological age is normally counted in the time zone of the place of birth, as written on the birth certificate. This calculator uses the dates exactly as you enter them.</p>
+      </article>
+
+      <article class="chap">
+        <span class="num">05</span>
+        <h3>Counting age around the world</h3>
+        <p>The method used here is often called <b>international age</b>: you are 0 at birth and gain a year on each birthday. It is not the only tradition. In East Asian age reckoning, a baby counts as 1 at birth and everyone gains a year at the new year. In that system a child born in late December can be "2" just a few days later.</p>
+        <p>South Korea moved its official documents to international age in June 2023, and Japan made the switch by law back in 1950. The traditional systems still turn up in everyday conversation and celebrations. Whenever a form asks for chronological age, it means the international, birthday-based count.</p>
+      </article>
+
+      <article class="chap">
+        <span class="num">06</span>
+        <h3>Chronological age vs biological age</h3>
+        <p>Chronological age changes at exactly the same speed for everyone. <b>Biological age</b> is an estimate of how old the body seems. It can be based on fitness, blood markers or DNA changes measured by "epigenetic clocks". A 50-year-old can have a biological age of 44 or of 57. Researchers use the gap as a sign of health and lifestyle.</p>
+        <p>Biological age tests are still being developed and different tests can disagree. Chronological age, on the other hand, is a fact. That is why it is the age used on passports, medical records and test reports.</p>
+      </article>
+
+      <article class="chap">
+        <span class="num">07</span>
+        <h3>When the exact figure matters</h3>
+        <div class="tiles">
+          <div><b>Legal ages</b><span>Voting, driving, drinking, signing contracts and retiring all depend on age on a specific day.</span></div>
+          <div><b>School entry</b><span>Many school systems admit children who reach a set age by a cut-off date.</span></div>
+          <div><b>Medicine</b><span>Growth charts, vaccine timing and some drug doses use age in months or days.</span></div>
+          <div><b>Testing</b><span>Psychological and speech tests compare scores with others of the same exact age.</span></div>
+          <div><b>Sport</b><span>Youth leagues and masters events group athletes by age on a set date.</span></div>
+          <div><b>Insurance &amp; pensions</b><span>Premiums and pension rights can change on the day you reach an age.</span></div>
+        </div>
+      </article>
+
+      <article class="chap">
+        <span class="num">08</span>
+        <h3>Age in different units</h3>
+        <table class="units">
+          <thead><tr><th>1 year of chronological age</th><th>Equals (average)</th></tr></thead>
+          <tbody>
+            <tr><td>Months</td><td>12</td></tr>
+            <tr><td>Weeks</td><td>52.18</td></tr>
+            <tr><td>Days</td><td>365.2425</td></tr>
+            <tr><td>Hours</td><td>8,765.8</td></tr>
+            <tr><td>Minutes</td><td>525,949</td></tr>
+            <tr><td>Seconds</td><td>31,556,952</td></tr>
+          </tbody>
+        </table>
+        <p>Some fun round numbers: you reach <b>10,000 days</b> at about 27 years and 4 months, <b>1,000 months</b> at 83 years and 4 months, and <b>1 billion seconds</b> at about 31 years, 8 months and 9 days.</p>
+      </article>
+      <article class="chap">
+        <span class="num">09</span>
+        <h3>Tips for an accurate result</h3>
+        <ul>
+          <li><b>Check the date format.</b> 03/04/2010 is 4 March in the US but 3 April in most other countries. The date pickers on this page avoid that confusion.</li>
+          <li><b>Use the right "age on" date.</b> For a test, it is the day the test was given, not the day the report was written. For an age limit, it is the cut-off date in the rules.</li>
+          <li><b>Do not divide days by 365.</b> Over 40 years that shortcut is out by about 10 days because it ignores leap years.</li>
+          <li><b>Do not round unless you are told to.</b> Some forms want whole months, but most legal and clinical uses need the exact days.</li>
+          <li><b>Add the birth time for babies.</b> In the first days of life, hours matter more than dates.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="block faq-sec">
+  <div class="wrap">
+    <div class="block-head">
+      <p class="tag dark"><span></span>FAQ</p>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Does the chronological age calculator count leap years?</summary><p>Yes. It works with real calendar dates, so every 29 February between the two dates is included in the day, week, hour and second totals, and month lengths of 28 to 31 days are used for the years-months-days result.</p></details>
+      <details><summary>How do I calculate my age in days?</summary><p>Enter your date of birth and the date you want. The calculator counts every calendar day between them. As a rough check, multiply your age in years by 365.25.</p></details>
+      <details><summary>What day of the week was I born?</summary><p>After you enter your date of birth, the result panel shows the weekday you were born on, for example "born on a Tuesday".</p></details>
+      <details><summary>How old will I be on a future date?</summary><p>Change the "Age on" date to any future date. The calculator shows your exact age on that day.</p></details>
+      <details><summary>How is age calculated for someone born on 29 February?</summary><p>In leap years the birthday is 29 February. In other years this calculator treats 28 February as the birthday. Legal rules differ by country, and some use 1 March instead.</p></details>
+      <details><summary>What is a 10,000-day birthday?</summary><p>It is the day you have been alive for exactly 10,000 days, at about 27 years and 4 months old. The milestones section shows the exact date for you.</p></details>
+      <details><summary>Is chronological age the same as my real age?</summary><p>Yes. Chronological age is your real calendar age since birth. It is different from biological age, which estimates how old your body seems.</p></details>
+      <details><summary>Can I find a date of birth from an age?</summary><p>Yes. Use the reverse tool: enter an age in years, months and days and the date it was measured on, and it shows the matching date of birth.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <a href="#" class="logo light"><span class="logo-dot" aria-hidden="true"></span><span>chrono<b>.age</b></span></a>
+    <p>A free chronological age calculator with live counter and milestones. Results are for general information.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  function dim(y,m){ return new Date(Date.UTC(y,m,0)).getUTCDate(); } /* m 1..12 */
+  function pad(n){ return (n<10?'0':'')+n; }
+  function iso(o){ return o.y+'-'+pad(o.m)+'-'+pad(o.d); }
+  function parse(s){ var r=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); if(!r) return null; var o={y:+r[1],m:+r[2],d:+r[3]}; if(o.m<1||o.m>12||o.d<1||o.d>dim(o.y,o.m)) return null; return o; }
+  function utc(o){ return Date.UTC(o.y,o.m-1,o.d); }
+  function fromUtc(ms){ var x=new Date(ms); return {y:x.getUTCFullYear(),m:x.getUTCMonth()+1,d:x.getUTCDate()}; }
+  function addDays(o,n){ return fromUtc(utc(o)+n*864e5); }
+  function today(){ var t=new Date(); return {y:t.getFullYear(),m:t.getMonth()+1,d:t.getDate()}; }
+  function same(a,b){ return a.y===b.y&&a.m===b.m&&a.d===b.d; }
+  function fmt(o){ return new Date(utc(o)).toLocaleDateString('en-GB',{timeZone:'UTC',weekday:'short',day:'numeric',month:'short',year:'numeric'}); }
+  function n(x){ return Math.floor(x).toLocaleString('en-US'); }
+  function pl(v,w){ return v+' '+w+(v===1?'':'s'); }
+
+  /* calendar age, borrowing real month lengths (double borrow for month-end birthdays) */
+  function age(b,t){
+    if(b.m===2&&b.d===29&&dim(t.y,2)===28) b={y:b.y,m:2,d:28}; /* leapling: 28 Feb counts as birthday in common years */
+    var y=t.y-b.y, m=t.m-b.m, d=t.d-b.d;
+    if(d<0){
+      var pm=t.m-1, py=t.y; if(pm<1){pm=12;py--;}
+      d+=dim(py,pm); m--;
+      if(d<0){ var p2=pm-1, y2=py; if(p2<1){p2=12;y2--;} d+=dim(y2,p2); m--; }
+    }
+    if(m<0){ m+=12; y--; }
+    return {y:y,m:m,d:d};
+  }
+  function bdayIn(b,year){ return {y:year,m:b.m,d:Math.min(b.d,dim(year,b.m))}; } /* Feb 29 -> Feb 28 */
+  function nextBday(b,t){ var c=bdayIn(b,t.y); if(utc(c)<=utc(t)) c=bdayIn(b,t.y+1); return c; }
+  function lastBday(b,t){ var c=bdayIn(b,t.y); if(utc(c)>utc(t)) c=bdayIn(b,t.y-1); return c; }
+  function birthMoment(b){
+    var tm=$('tob').value, hh=0, mm=0;
+    if(/^\d{2}:\d{2}/.test(tm)){ hh=+tm.slice(0,2); mm=+tm.slice(3,5); }
+    return new Date(b.y,b.m-1,b.d,hh,mm,0,0);
+  }
+
+  var state=null, timer=null;
+  function calc(){
+    var b=parse($('dob').value), t=parse($('on').value);
+    clearInterval(timer);
+    if(!b||!t){ fail('Enter a date of birth and the date to calculate the age on.'); return; }
+    if(utc(b)>utc(t)){ fail('The date of birth is after the "Age on" date. Please check both dates.'); return; }
+    $('err').hidden=true; $('out').hidden=false;
+    var a=age(b,t), isToday=same(t,today());
+    state={b:b,t:t,a:a,isToday:isToday};
+    $('y').textContent=a.y; $('m').textContent=a.m; $('d').textContent=a.d;
+    $('yl').textContent=a.y===1?'year':'years'; $('ml').textContent=a.m===1?'month':'months'; $('dl').textContent=a.d===1?'day':'days';
+    $('code').textContent=a.y+';'+a.m+';'+a.d;
+    $('rOnLabel').textContent=isToday?'today':'on '+fmt(t);
+    $('born').textContent='Born on a '+DAYS[new Date(utc(b)).getUTCDay()]+', '+b.d+' '+MON[b.m-1]+' '+b.y;
+    var nb=nextBday(b,t), lb=lastBday(b,t), left=Math.round((utc(nb)-utc(t))/864e5), span=Math.round((utc(nb)-utc(lb))/864e5);
+    var pct=same(lb,t)?0:Math.round((1-left/span)*100);
+    $('ringPct').textContent=pct+'%';
+    var C=2*Math.PI*50; $('ringFg').style.strokeDasharray=C; $('ringFg').style.strokeDashoffset=C*(1-pct/100);
+    var turning=nb.y-b.y;
+    $('nextTxt').textContent=(same(lb,t)&&utc(t)>utc(b)?'🎉 Happy birthday! ':'')+pl(left,'day')+' until turning '+turning+' on '+fmt(nb)+(b.m===2&&b.d===29&&nb.d===28?' (28 Feb in a common year)':'');
+    var days=Math.round((utc(t)-utc(b))/864e5);
+    $('tMonths').textContent=n(a.y*12+a.m);
+    $('tWeeks').textContent=n(days/7);
+    $('tDays').textContent=n(days);
+    tick();
+    if(isToday){ timer=setInterval(tick,1000); $('liveDot').classList.add('on'); $('liveNote').textContent='Live: hours, minutes and seconds are counting up from '+($('tob').value?'your birth time':'midnight on your birth date (add a birth time for more precision)')+'.'; }
+    else { $('liveDot').classList.remove('on'); $('liveNote').textContent='Totals are counted to '+($('tob').value?$('tob').value:'00:00')+' on '+fmt(t)+'. Set "Age on" to today to start the live counter.'; }
+    renderMilestones();
+  }
+  function tick(){
+    if(!state) return;
+    var bm=birthMoment(state.b), end;
+    if(state.isToday) end=new Date();
+    else end=new Date(state.t.y,state.t.m-1,state.t.d,bm.getHours(),bm.getMinutes());
+    var s=Math.max(0,(end-bm)/1000);
+    $('tHours').textContent=n(s/3600); $('tMins').textContent=n(s/60); $('tSecs').textContent=n(s);
+  }
+  function fail(msg){ $('err').textContent=msg; $('err').hidden=false; $('out').hidden=true; state=null; $('ms').innerHTML=''; }
+
+  /* milestones */
+  var filter='all';
+  function renderMilestones(){
+    var list=$('ms'); list.innerHTML=''; if(!state) return;
+    var b=state.b, bm=birthMoment(b), now=today(), items=[];
+    [1000,5000,10000,15000,20000,25000,30000].forEach(function(v){ items.push({label:n(v)+' days',d:addDays(b,v),k:'Days'}); });
+    [1000,2000,3000].forEach(function(v){ items.push({label:n(v)+' weeks',d:addDays(b,v*7),k:'Weeks'}); });
+    [100,500,1000].forEach(function(v){ var t=b.y*12+(b.m-1)+v, y=Math.floor(t/12), m=t-y*12+1; items.push({label:n(v)+' months',d:{y:y,m:m,d:Math.min(b.d,dim(y,m))},k:'Months'}); });
+    [[1e5,'100,000 hours'],[5e5,'500,000 hours']].forEach(function(p){ var x=new Date(bm.getTime()+p[0]*3600e3); items.push({label:p[1],d:{y:x.getFullYear(),m:x.getMonth()+1,d:x.getDate()},k:'Hours',time:x}); });
+    [[1e9,'1 billion seconds'],[2e9,'2 billion seconds']].forEach(function(p){ var x=new Date(bm.getTime()+p[0]*1000); items.push({label:p[1],d:{y:x.getFullYear(),m:x.getMonth()+1,d:x.getDate()},k:'Seconds',time:x}); });
+    [18,21,30,40,50,65,100].forEach(function(v){ items.push({label:v+(v===21?'st':'th')+' birthday',d:bdayIn(b,b.y+v),k:'Birthday'}); });
+    items.sort(function(p,q){ return utc(p.d)-utc(q.d) || (p.k<q.k?-1:1); });
+    var nextFound=false;
+    items.forEach(function(it){
+      var diff=Math.round((utc(it.d)-utc(now))/864e5), past=diff<0, isNext=!past&&!nextFound;
+      if(isNext) nextFound=true;
+      if(filter==='next'&&past) return; if(filter==='past'&&!past) return;
+      var li=document.createElement('li'); li.className=(past?'past':'up')+(isNext?' next':'');
+      var when=diff===0?'Today!':past?pl(-diff,'day')+' ago':'in '+pl(diff,'day');
+      var t=it.time?' · '+pad(it.time.getHours())+':'+pad(it.time.getMinutes()):'';
+      var ag=age(b,it.d);
+      li.innerHTML='<span class="ms-k">'+it.k+'</span><b class="ms-l">'+it.label+'</b><span class="ms-d">'+fmt(it.d)+t+'</span><span class="ms-a">age '+ag.y+';'+ag.m+';'+ag.d+'</span><span class="ms-w">'+when+'</span>';
+      list.appendChild(li);
+    });
+    if(!list.children.length){ var li=document.createElement('li'); li.className='empty'; li.textContent='No milestones in this view.'; list.appendChild(li); }
+  }
+  document.querySelectorAll('.ms-filter button').forEach(function(bt){
+    bt.addEventListener('click',function(){ document.querySelectorAll('.ms-filter button').forEach(function(x){x.classList.remove('on');}); bt.classList.add('on'); filter=bt.getAttribute('data-f'); renderMilestones(); });
+  });
+
+  /* inputs */
+  ['dob','tob','on'].forEach(function(id){ $(id).addEventListener('change',calc); $(id).addEventListener('input',calc); });
+  $('go').addEventListener('click',function(){ calc(); document.querySelector('.result').scrollIntoView({behavior:'smooth',block:'start'}); });
+  document.querySelectorAll('[data-on]').forEach(function(bt){
+    bt.addEventListener('click',function(){
+      var k=bt.getAttribute('data-on'), t=today(), b=parse($('dob').value);
+      if(k==='eoy') t={y:t.y,m:12,d:31};
+      if(k==='next'&&b) t=nextBday(b,t);
+      $('on').value=iso(t);
+      document.querySelectorAll('[data-on]').forEach(function(x){x.classList.remove('on');}); bt.classList.add('on');
+      calc();
+    });
+  });
+  $('on').addEventListener('change',function(){ document.querySelectorAll('[data-on]').forEach(function(x){x.classList.remove('on');}); if($('on').value===iso(today())) document.querySelector('[data-on=today]').classList.add('on'); });
+
+  /* reverse */
+  function reverse(){
+    var Y=parseInt($('rY').value,10), M=parseInt($('rM').value,10), D=parseInt($('rD').value,10), t=parse($('rOn').value), out=$('rOut');
+    if(isNaN(Y)||isNaN(M)||isNaN(D)||!t||Y<0||M<0||M>11||D<0||D>31){ out.innerHTML='<p class="rev-bad">Enter years (0+), months (0–11), days (0–31) and a date.</p>'; return; }
+    var tt=t.y*12+(t.m-1)-(Y*12+M), ay=Math.floor(tt/12), am=tt-ay*12+1;
+    var approx={y:ay,m:am,d:Math.min(t.d,dim(ay,am))}; approx=addDays(approx,-D);
+    var hits=[];
+    for(var i=-12;i<=12;i++){ var c=addDays(approx,i); if(utc(c)>utc(t)) continue; var a=age(c,t); if(a.y===Y&&a.m===M&&a.d===D) hits.push(c); }
+    var latest=bdayIn({y:t.y-Y,m:t.m,d:t.d},t.y-Y);
+    var minAgeLine='<p class="rev-limit">To be at least <b>'+pl(Y,'year')+'</b> old on '+fmt(t)+', a person must be born on or before <b>'+fmt(latest)+'</b>.</p>';
+    if(!hits.length){ out.innerHTML='<p class="rev-bad">No calendar date gives exactly '+Y+';'+M+';'+D+' on that day. This can happen near the end of a month. Try one day more or less.</p>'+minAgeLine; return; }
+    out.innerHTML='<p class="rev-lbl">Date of birth</p><p class="rev-big">'+hits.map(fmt).join('<br><small>or</small> ')+'</p>'+(hits.length>1?'<p class="rev-note">Several birth dates give the same age because of month-end borrowing.</p>':'')+minAgeLine;
+  }
+  $('rGo').addEventListener('click',reverse);
+  ['rY','rM','rD','rOn'].forEach(function(id){ $(id).addEventListener('change',reverse); });
+
+  /* menu */
+  var burger=document.querySelector('.burger'), menu=document.querySelector('.menu');
+  burger.addEventListener('click',function(){ var o=menu.classList.toggle('open'); burger.setAttribute('aria-expanded',o); });
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',function(){ menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }); });
+
+  /* init */
+  var t0=today();
+  $('on').value=iso(t0); $('rOn').value=iso(t0);
+  $('dob').value='1995-07-14'; $('tob').value='08:30';
+  calc(); reverse();
+})();
+</script>
+</body>
+</html>
